@@ -1,0 +1,139 @@
+:root {
+  --board-size: 360px;
+  --tile-size: 20px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameboard {
+  display: grid;
+  grid: repeat(10, calc(var(--board-size) / 10)) / repeat(
+      10,
+      calc(var(--board-size) / 10)
+    );
+  margin: 30px;
+  border: 1px solid gray;
+}
+
+.tile {
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid gray;
+  width: calc(var(--board-size) / 10);
+  height: calc(var(--board-size) / 10);
+}
+
+.tile.has-ship {
+  margin: 0;
+  background-color: aquamarine;
+}
+
+.red > .tile.has-ship {
+  background-color: crimson;
+}
+
+.tile:hover {
+  filter: brightness(90%);
+}
+
+.tile.hit:hover {
+  filter: brightness(40%);
+}
+
+.hidden {
+  display: none;
+}
+
+.ship-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.ship-buttons > button {
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  padding: 0.3rem;
+}
+
+.ship-pile {
+  display: flex;
+  width: var(--board-size);
+  height: var(--board-size);
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tile > .ship {
+  margin: 0;
+  top: -2px;
+  left: -2px;
+}
+
+.ship {
+  margin: 10px;
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  border: 1px solid gray;
+}
+
+.ship > .tile {
+  background-color: aquamarine;
+}
+
+.ship.red > .tile {
+  background-color: crimson;
+}
+
+.horizontal {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: calc(var(--board-size) / 10);
+  grid-auto-columns: calc(var(--board-size) / 10);
+}
+
+.hit {
+  filter: brightness(50%);
+}
+dialog::backdrop {
+  background-color: rgba(255, 255, 255, 1);
+  animation: dialog-fade-in 0.25s ease-in;
+}
+@keyframes dialog-fade-in {
+  from {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  to {
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+dialog {
+  border: 0;
+  animation: dialog-fade-in 0.25s ease-in;
+}
+
+dialog > div {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+dialog > div > * {
+  margin: 0.5rem;
+}
+
+dialog button {
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
